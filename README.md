@@ -4,7 +4,7 @@ Interactive JavaScript guessing game created by applying object-oriented program
 # Instructions
 The game allows users to select letters from a virtual keyboard by simply clicking on the keys, if there is a match then the matched letter(s) are displayed otherwise the letters won’t be displayed causing the user too loose one life. The pressed keys get disabled on each click and change color if there is a match or not, and finally if the user guesses all the letters then the user wins, otherwise loses.
 
-#.............................. App classes and methods................................................................................. 
+
 # Phrase Class
  - Includes constructor that receives a `phrase` parameter and initializes a `phrase`
 property set to the phrase
