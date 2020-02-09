@@ -10,18 +10,28 @@ constructor(){
 //missed = track number misses by the player
 //phrases: an array of five Phrase objects to use with the game.
 //activePhrase: This is the Phrase object that’s currently in play. The initial value is null. Within the startGame() method, this property will be set to the Phrase object returned from a call to the getRandomPhrase() method.
+//console.log('New game has started');
 this.missed = 0;
 this.phrases = [
-    {phrase: 'How are you'},
-    {phrase: 'How old are you'},
-    {phrase: 'What is your name'},
-    {phrase: 'may the force be with you'},
-    {phrase: 'Have a great day'}
+    new Phrase('How are you'),
+    new Phrase('How old are you'),
+    new Phrase('What is your name'),
+    new Phrase('may the force be with you'),
+    new Phrase('Have a great day')
 ];
 this.activePhrase = {};
-
-
 }
+
+
+//select and  return a random phrase from the array of phrases stored in the Game class’s `phrases` property.
+getRandomPhrase(){
+    let randomnumber = Math.floor(Math.random()*5);  
+    let randomphrase = this.phrases[randomnumber];
+    return randomphrase;
+    
+    }
+
+
 //startGame(): hides the start screen overlay, calls  getRandomPhrase(), addPhraseToDisplay(), and sets the activePhrase property
 startGame(){
 
@@ -29,17 +39,17 @@ startGame(){
 const overlay = document.querySelector('#overlay');
 overlay.style.display = 'none';
   
-    const phrase1  = new Phrase(this.getRandomPhrase());
-    this.activePhrase = phrase1 //assign phrase object to acttivephrase
-    phrase1.addPhraseToDisplay();
-   
-}
+
+this.activePhrase = this.getRandomPhrase();
+//console.log(this.activePhrase);
+this.activePhrase.addPhraseToDisplay();
 
 
-//select and  return a random phrase from the array of phrases stored in the Game class’s `phrases` property.
-getRandomPhrase(){
-let randomnumber = Math.floor(Math.random()*5);  
-return this.phrases[randomnumber].phrase
+/*
+const phrase1  = new Phrase(this.getRandomPhrase());
+this.activePhrase = phrase1 //assign phrase object to acttivephrase
+phrase1.addPhraseToDisplay();
+*/
 }
 
 
@@ -55,8 +65,6 @@ var selectedkey;
         selectedkey =l;
         
     }
-
-
  })
  
  //if there is a match, display the letter
@@ -142,6 +150,53 @@ overlay.style =  'show';
 h1.innerHTML = 'Congratulations!!! You Won';
 
 }
+
+}
+
+
+resetGame(){
+
+// remove list items (letters from phrase)
+let node = document.querySelector('#phrase').firstElementChild; //Ul;
+let child = node.firstElementChild;
+let listLength = node.querySelectorAll('li').length;
+
+
+for(let i = 0; i<=listLength-1; i++){
+    node = document.querySelector('#phrase').firstElementChild; //Ul
+    child = node.firstElementChild;
+    node.removeChild(child);
+}
+
+// Enable all the onscreen buttons, and update CSS class to 'key'
+
+ // Enable selected key
+ const wrongs = document.querySelectorAll('.wrong');
+ const chosens = document.querySelectorAll('.chosen');
+ wrongs.forEach(l => {
+ 
+    
+        l.disabled = false;
+        l.className = 'key';
+})
+
+chosens.forEach(l => {
+
+   
+       l.disabled = false;
+       l.className = 'key';
+})
+
+
+// Reset the player's lives
+const tries = document.querySelectorAll('img');
+
+tries.forEach(t => {
+
+t.src ='images/LiveHeart.png';
+
+
+    })
 
 }
 

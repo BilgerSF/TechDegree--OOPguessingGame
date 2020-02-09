@@ -9,14 +9,13 @@ class Phrase {
     //constructor
    constructor(phrase){
    this.phrase = phrase.toLowerCase();
-   
-  
+   //console.log(this.phrase);
    }
    
    //this methods receives a random phrase and parses the phrase into list items filtered by a letter class and space class
    addPhraseToDisplay(){
     let letter = this.phrase.split(""); // split phrase into letters
-    
+   
     
     letter.forEach(l => {
         
@@ -48,9 +47,9 @@ class Phrase {
    checkLetter(letter){
     let check = false;
     check = this.phrase.includes(letter);
-    
+    //console.log(this.phrase);
     if (check === true){
-     return letter;
+         return letter;
      }
     
 }
